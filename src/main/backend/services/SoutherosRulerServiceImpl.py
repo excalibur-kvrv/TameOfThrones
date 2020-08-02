@@ -1,6 +1,8 @@
 from src.main.backend.models.Ruler import Ruler
 from src.main.backend.services.SoutherosRulerService import SoutherosRulerService
 from src.main.backend.repositoryservices.KingdomRepositoryServiceDummyImpl import KingdomRepositoryServiceDummyImpl
+
+from collections import OrderedDict
 from typing import List
 
 
@@ -16,15 +18,20 @@ class SoutherosRulerServiceImpl(SoutherosRulerService):
 
         for ruler_name in rulers:
             ruler = rulers[ruler_name]
+            allies = OrderedDict()
+
             for kingdom_name, message in messages:
-                if kingdom_name not in kingdoms:
+                if kingdom_name not in kingdoms or kingdom_name in allies:
                     continue
 
                 kingdom = kingdoms[kingdom_name]
                 encrypted_message = ruler.send_message(message, kingdom.get_emblem())
                 will_ally = kingdom.receive_message(encrypted_message)
                 if will_ally:
-                    ruler.add_ally(kingdom)
+                    allies[kingdom_name] = kingdom
+
+            for ally in allies.values():
+                ruler.add_ally(ally)
 
             result.append(ruler)
 
