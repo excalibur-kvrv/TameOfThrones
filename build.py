@@ -1,10 +1,10 @@
-from src.tests.controller.TameOfThronesControllerTest import TestTameOfThronesController
-from src.tests.models.TestModels import TestModels
-from src.tests.repositoryservices.TestRepositoryImpl import TestKingdomRepository
-from src.tests.services.TestServices import TestSoutherosService
-from src.tests.utils.TestCryptography import TestCryptography
-from src.tests.utils.TestOutput import TestOutput
-from src.tests.utils.TestInputValidator import TestInputValidator
+from src.tests.controller.test_TameOfThronesController import TestTameOfThronesController
+from src.tests.models.test_Models import TestModels
+from src.tests.repositoryservices.test_RepositoryImpl import TestKingdomRepository
+from src.tests.services.test_Services import TestSoutherosService
+from src.tests.utils.test_Cryptography import TestCryptography
+from src.tests.utils.test_Output import TestOutput
+from src.tests.utils.test_InputValidator import TestInputValidator
 
 import subprocess
 import unittest
