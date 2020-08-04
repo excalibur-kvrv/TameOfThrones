@@ -1,7 +1,12 @@
+from src.main.backend.globals.constants import FIRST_CHAR_ASCII_VALUE, LAST_CHAR_ASCII_VALUE
 from src.main.backend.utils.Cryptography import Cryptography
 
 
 class SeaserCipher(Cryptography):
+    def __init__(self):
+        self.first_char = FIRST_CHAR_ASCII_VALUE
+        self.last_char = LAST_CHAR_ASCII_VALUE
+
     def encrypt(self, message: str, key: int) -> str:
         return message
 
@@ -14,15 +19,23 @@ class SeaserCipher(Cryptography):
 
         decrypted_message_chunks = []
 
-        for letter in message.lower():
+        for char in message:
+            char = self.__validate_character(char)
+            char_val = ord(char) - key
 
-            char_val = ord(letter) - key
-
-            if char_val < 97:
-                decrypted_chunk = chr(((123 - (97 - char_val)) % 97) + 97)
+            if char_val < self.first_char:
+                decrypted_chunk = chr(((self.last_char - (self.first_char - char_val))
+                                       % self.first_char) + self.first_char)
             else:
-                decrypted_chunk = chr((char_val % 97) + 97)
+                decrypted_chunk = chr((char_val % self.first_char) + self.first_char)
 
             decrypted_message_chunks.append(decrypted_chunk)
 
         return "".join(decrypted_message_chunks)
+
+    def __validate_character(self, char):
+        if self.first_char == ord("A") and char.islower():
+            return char.upper()
+        elif self.first_char == ord("a") and char.isupper():
+            return char.lower()
+        return char

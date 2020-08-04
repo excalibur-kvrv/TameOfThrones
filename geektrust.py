@@ -1,4 +1,5 @@
 from src.main.backend.controller.TameOfThronesController import Controller
+from src.main.backend.globals.constants import OUTPUT_TYPE
 
 import sys
 import os
@@ -16,7 +17,8 @@ def main():
     if not os.path.isfile(input_file):
         raise FileNotFoundError(f"{input_file} is not a valid path")
 
-    Controller.run(input_file, output_type="console")
+    tame_of_thrones_controller = Controller()
+    tame_of_thrones_controller.run(input_file, OUTPUT_TYPE)
 
 
 if __name__ == "__main__":

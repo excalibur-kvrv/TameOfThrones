@@ -1,4 +1,4 @@
-class InputParsingError:
+class InputParsingError(Exception):
     """ Exception raised when an Input Validator is provided with invalid data.
     """
 
@@ -10,7 +10,7 @@ class InputParsingError:
         super().__init__(message)
 
 
-class InputValidatorNotImplemented:
+class InputValidatorNotImplemented(Exception):
     """ Exception raised when a custom input validator to check input data has not been defined.
     """
 

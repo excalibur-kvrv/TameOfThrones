@@ -1,4 +1,5 @@
 from src.main.backend.controller.TameOfThronesController import Controller
+from src.main.backend.globals.constants import SAVE_PATH
 
 import unittest
 import os
@@ -10,11 +11,13 @@ class TestTameOfThronesController(unittest.TestCase):
 
     def test_inputs_generate_correct_output(self):
         extract_number = re.compile(r"(\d+)")
+        controller = Controller()
 
         for file_name in os.listdir(self.RESOURCES_PATH):
             if file_name.startswith("input-file-"):
                 file_path = os.path.join(self.RESOURCES_PATH, file_name)
-                Controller.run(file_path, output_type="file")
+
+                controller.run(file_path, "file")
 
                 extracted_number = extract_number.findall(file_name)[0]
                 expected_output_file = f"output-file-{extracted_number}.txt"
@@ -23,11 +26,9 @@ class TestTameOfThronesController(unittest.TestCase):
                 with open(os.path.join(self.RESOURCES_PATH, expected_output_file)) as expected:
                     expected_data = expected.read()
 
-                with open(os.path.join(self.RESOURCES_PATH, actual_output_file)) as actual:
+                with open(os.path.join(SAVE_PATH, actual_output_file)) as actual:
                     actual_data = actual.read()
 
-                assert actual_data.strip() == expected_data.strip(), \
-                    f"expected {expected_data.strip()} but got {actual_data.strip()}"
+                assert actual_data == expected_data, f"expected {expected_data} but got {actual_data}"
 
-                os.unlink(os.path.join(self.RESOURCES_PATH, actual_output_file))
-
+                os.unlink(os.path.join(SAVE_PATH, actual_output_file))

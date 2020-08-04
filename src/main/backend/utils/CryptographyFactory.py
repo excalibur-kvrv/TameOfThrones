@@ -6,8 +6,7 @@ class CryptographyFactory:
     """ A factory class to create Cryptography objects.
     """
 
-    @staticmethod
-    def get_cryptographic_strategy(strategy: str) -> Cryptography:
+    def get_cryptographic_strategy(self, strategy: str) -> Cryptography:
         """
         get_cryptographic_strategy() -> This is a factory method to create Cryptography objects.
         :param strategy: The cryptographic strategy to implement.

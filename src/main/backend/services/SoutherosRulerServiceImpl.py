@@ -1,16 +1,18 @@
+from src.main.backend.repositoryservices.KingdomRepositoryServiceDummyImpl import KingdomRepositoryServiceDummyImpl
 from src.main.backend.models.Ruler import Ruler
 from src.main.backend.services.SoutherosRulerService import SoutherosRulerService
-from src.main.backend.repositoryservices.KingdomRepositoryServiceDummyImpl import KingdomRepositoryServiceDummyImpl
 
 from collections import OrderedDict
 from typing import List
 
 
 class SoutherosRulerServiceImpl(SoutherosRulerService):
-    repo_service = KingdomRepositoryServiceDummyImpl()
+    REPO_SERVICE = KingdomRepositoryServiceDummyImpl
 
     def find_all_allies_for_rulers(self, messages) -> List[Ruler]:
-        mappings = self.repo_service.get_all_southeros_kingdoms()
+        repo_service = self.REPO_SERVICE()
+
+        mappings = repo_service.get_all_southeros_kingdoms()
         rulers = mappings["ruler"]
         kingdoms = mappings["kingdoms"]
 

@@ -4,14 +4,16 @@ import unittest
 
 
 class TestKingdomRepository(unittest.TestCase):
-    repo_service = KingdomRepositoryServiceDummyImpl()
+    REPO_SERVICE = KingdomRepositoryServiceDummyImpl()
 
     def test_deserialization(self):
-        mappings = self.repo_service.get_all_southeros_kingdoms()
+        mappings = self.REPO_SERVICE.get_all_southeros_kingdoms()
 
         assert "SPACE" in mappings["ruler"], f"Expected SPACE in deserialized object"
 
         expected_allies = {"LAND", "WATER", "ICE", "FIRE", "AIR"}
+
+        assert len(mappings["kingdoms"]) != 0
 
         for ally in mappings["kingdoms"]:
             assert ally in expected_allies, f"Expected {ally} to be in {expected_allies}"

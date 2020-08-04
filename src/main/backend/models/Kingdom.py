@@ -14,7 +14,7 @@ class Kingdom:
         """
 
         self.__name = name
-        self.__emblem = emblem.lower()
+        self.__emblem = emblem
         self.__crypto_strategy = cryptographic_strategy
 
     def get_emblem(self) -> str:

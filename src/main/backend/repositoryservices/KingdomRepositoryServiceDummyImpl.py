@@ -1,15 +1,15 @@
-from src.main.backend.utils.CryptographyFactory import CryptographyFactory
+from src.main.backend.globals.constants import KINGDOM_DATA, STRATEGY
 from src.main.backend.models.Kingdom import Kingdom
 from src.main.backend.models.Ruler import Ruler
 from src.main.backend.repositoryservices.KingdomRepositoryService import KingdomRepositoryService
+from src.main.backend.utils.CryptographyFactory import CryptographyFactory
 
 from typing import Dict, Any
 import json
-import os
 
 
 class KingdomRepositoryServiceDummyImpl(KingdomRepositoryService):
-    REPO_PATH = os.path.join("src", "main", "resources", "kingdoms.json")
+    REPO_PATH = KINGDOM_DATA
 
     def get_all_southeros_kingdoms(self) -> Dict[str, Dict[str, Any]]:
         mappings = {"ruler": {}, "kingdoms": {}}
@@ -17,8 +17,8 @@ class KingdomRepositoryServiceDummyImpl(KingdomRepositoryService):
         with open(self.REPO_PATH) as repository:
             json_data = json.load(repository)
 
-        crypto_type = json_data["cipher_type"].lower()
-        crypto_strategy = CryptographyFactory.get_cryptographic_strategy(crypto_type)
+        crypto_factory = CryptographyFactory()
+        crypto_strategy = crypto_factory.get_cryptographic_strategy(STRATEGY)
 
         for ruler in json_data["rulers"]:
             emblem = json_data["rulers"][ruler]

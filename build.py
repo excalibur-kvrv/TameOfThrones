@@ -2,6 +2,9 @@ from src.tests.controller.TameOfThronesControllerTest import TestTameOfThronesCo
 from src.tests.models.TestModels import TestModels
 from src.tests.repositoryservices.TestRepositoryImpl import TestKingdomRepository
 from src.tests.services.TestServices import TestSoutherosService
+from src.tests.utils.TestCryptography import TestCryptography
+from src.tests.utils.TestOutput import TestOutput
+from src.tests.utils.TestInputValidator import TestInputValidator
 
 import subprocess
 import unittest
@@ -25,6 +28,19 @@ def service_test_suite(suite):
     suite.addTest(TestSoutherosService("test_southeros_find_all_allies"))
 
 
+def cryptography_test_suite(suite):
+    suite.addTest(TestCryptography("test_crypto_factory_returns_correct_instance"))
+    suite.addTest(TestCryptography("test_seaser_algorithm"))
+
+
+def output_generator_test_suite(suite):
+    suite.addTest(TestOutput("test_output_factory_returns_correct_instance"))
+
+
+def input_validator_test_suite(suite):
+    suite.addTest(TestInputValidator("test_file_is_invalid_raises_error"))
+
+
 def run_tests():
     runner = unittest.TextTestRunner()
     suite = unittest.TestSuite()
@@ -34,6 +50,9 @@ def run_tests():
     models_test_suite(suite)
     repository_service_test_suite(suite)
     service_test_suite(suite)
+    cryptography_test_suite(suite)
+    output_generator_test_suite(suite)
+    input_validator_test_suite(suite)
 
     runner.run(suite)
 
@@ -50,7 +69,7 @@ if __name__ == "__main__":
 
     run_tests()
 
-    if platform == "Windows":
+    if platform.system() == "Windows":
         subprocess.run(f"python -m geektrust {input_file_path}", shell=True)
     else:
         subprocess.run(f"python3 -m geektrust {input_file_path}", shell=True)
