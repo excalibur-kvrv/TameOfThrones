@@ -5,13 +5,13 @@ repos:
         name: pytest
         stages: [commit, push]
         language: system
-        entry: pipenv run pytest
+        entry: pytest
         types: [python]
 
       - id: pytest-cov
         name: pytest
         stages: [commit, push]
         language: system
-        entry: pipenv run pytest --cov --cov-fail-under=100
+        entry: pytest --cov
         types: [python]
         pass_filenames: false
