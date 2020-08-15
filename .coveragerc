@@ -1,5 +1,4 @@
 [run]
 source = src/main
-         src\main
 [report]
 fail_under = 80.0

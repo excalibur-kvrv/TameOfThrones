@@ -1,16 +1,16 @@
+default_stages: [commit, push]
+fail_fast: true
 repos:
   - repo: local
     hooks:
       - id: pytest
         name: pytest
-        stages: [commit, push]
         language: system
         entry: pytest
         types: [python]
 
       - id: pytest-cov
         name: pytest
-        stages: [commit, push]
         language: system
         entry: pytest --cov
         types: [python]
