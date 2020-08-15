@@ -13,8 +13,8 @@ char range = [FIRST_CHAR_ASCII_VALUE, LAST_CHAR_ASCII_VALUE)
 """
 
 TOTAL_CHARS = 26
-FIRST_CHAR_ASCII_VALUE = ord("A")
-LAST_CHAR_ASCII_VALUE = FIRST_CHAR_ASCII_VALUE + TOTAL_CHARS
+FIRST_CHAR_UNICODE_VALUE = ord("A")
+LAST_CHAR_UNICODE_VALUE = FIRST_CHAR_UNICODE_VALUE + TOTAL_CHARS
 STRATEGY = "seaser"
 
 """
@@ -64,5 +64,5 @@ The below constants is used to indicate the pattern to be used to validate the i
 
 """
 
-FILE_PATTERN = r"^\s*[a-z]+ [a-z\s]+$"
+FILE_PATTERN = r"^\s*[a-z]+ .+$"
 RUN_VALIDATION = True

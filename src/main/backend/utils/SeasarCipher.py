@@ -1,11 +1,11 @@
-from src.main.backend.globals.constants import FIRST_CHAR_ASCII_VALUE, LAST_CHAR_ASCII_VALUE
+from src.main.backend.globals.constants import FIRST_CHAR_UNICODE_VALUE, LAST_CHAR_UNICODE_VALUE
 from src.main.backend.utils.Cryptography import Cryptography
 
 
 class SeaserCipher(Cryptography):
     def __init__(self):
-        self.first_char = FIRST_CHAR_ASCII_VALUE
-        self.last_char = LAST_CHAR_ASCII_VALUE
+        self.first_char = FIRST_CHAR_UNICODE_VALUE
+        self.last_char = LAST_CHAR_UNICODE_VALUE
 
     def encrypt(self, message: str, key: int) -> str:
         return message
