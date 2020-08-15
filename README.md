@@ -5,9 +5,9 @@ Each kingdom has their own emblem and the secret message should contain the lett
 Refer: https://www.geektrust.in/coding-problem/backend/tame-of-thrones </p>
 
 # Requirements
-<ul>
-<li>Python >= 3.8</li>
-</ul>
+Python >= 3.8 <br>
+Install external modules using `pip install -r requirements.txt` in a virtual environment<br>
+Install pre-commit hooks using `pre-commit install`<br>
 
 # Usage
 Running without unittests `python -m geektrust "absolute/relative path to input file"` <br>
